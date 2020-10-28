@@ -11,7 +11,7 @@ db.sync();
 app.listen(3500, function() {
     console.log('listening on 3500')
 })
-
+    
 
 
 
