@@ -8,8 +8,8 @@ db.sync();
 
 
 
-app.listen(3500, function() {
-    console.log('listening on 3500')
+app.listen(process.env.PORT, function() {
+    console.log(`server is listening on port ${process.env.PORT}`)
 })
     
 

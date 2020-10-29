@@ -1,0 +1,1 @@
+jwt.verify(token, process.env.JWT_SECRET) 
