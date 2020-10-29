@@ -6,7 +6,7 @@ let User = sequelize.import('../models/user');
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
 
-route.post('/user', (req,res) => {
+route.post('/register', (req,res) => {
     let username = req.body.user.username;
     let password = req.body.user.password;
 
