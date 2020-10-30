@@ -11,3 +11,5 @@ route.get('/user', (req,res) => {
     res.send('this works')
 
 })
+
+module.exports = route;
