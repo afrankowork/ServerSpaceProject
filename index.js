@@ -1,7 +1,7 @@
 require("dotenv").config();
 let express = require('express');
-let user = require('./controllers/userController')
 const db = require("./db");
+let user = require('./controllers/userController')
 const app = express();
 
 db.sync();
