@@ -24,6 +24,8 @@ app.use(require('./middleware/validate-session'));
 
 */
 
+app.use('/feature', feature);
+
 
 
 app.listen(process.env.PORT, function() {
