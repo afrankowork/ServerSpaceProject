@@ -18,10 +18,13 @@ app.use('/test',user);
 
 
 // ROUTE PROTECTION GOES HERE
-
+app.use(require('./middleware/validate-session'));
 /*
     PROTECTED ROUTES
+
 */
+
+
 
 app.listen(process.env.PORT, function() {
     console.log(`server is listening on port ${process.env.PORT}`)
