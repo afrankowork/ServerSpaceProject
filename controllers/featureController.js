@@ -18,17 +18,17 @@ router.get('/', (req, res) => {
 
 /*        GET A FEATURE FOR A USER      */
 router.get('/:id', (req, res) => {
-     var data = request.params.id;
-     var userid = request.user.id;
+     var data = req.params.id;
+     var userid = req.user.id;
 
      featureModel.findOne({
                where: { id: data, owner_id: userid }
           }).then(
                function Success(data) {
-                    response.json(data);
+                    res.json(data);
                },
                function Error(err) {
-                    response.send(500, err.message);
+                    res.send(500, err.message);
                }
           );
 });
@@ -68,37 +68,37 @@ router.post("/", (req, res) => {
 });
 
 /*        DELETE A FEATURE              */
-router.delete('/:id', function(request, response){
-     var data = request.params.id;
-     var userid = request.user.id;
+router.delete('/:id', function(req, res){
+     var data = req.params.id;
+     var userid = req.user.id;
 
-     logModel.destroy({
+     featureModel.destroy({
           where: {id: data, owner_id: userid}
      }).then(
           function deleteLogSuccess(){
-               response.send("Feature removed successfully.");
+               res.send("Feature removed successfully.");
           },
           function deleteLogError(err){
-               response.send(500, erro.message);
+               res.send(500, erro.message);
           }
      )
 })
 
 /*        UPDATE A FEATURE              */
 router.put('/:id', function(req, res){
-     var data = request.params.id;
-     var featureName = req.body.feature.featureName;
-     var featureType = req.body.feature.featureType;
+     var data = req.params.id;
+     var featureName = req.body.feature.feature_name;
+     var featureType = req.body.feature.feature_type;
      var description = req.body.feature.description;
-     var ownerId = req.user.ownerId;
-     var userNotes = req.body.feature.userNotes;
+     var ownerId = req.user.owner_id;
+     var userNotes = req.body.feature.user_notes;
      var distanceData = req.body.feature.distance;
      var ascensionData = req.body.feature.ascension;
      var declinationData = req.body.feature.declination;
      var altData = req.body.feature.alt;
      var aziData = req.body.feature.azi;
 
-     logModel.update({
+     featureModel.update({
           feature_name: featureName,
           feature_type: featureType,
           description: description,
@@ -112,7 +112,7 @@ router.put('/:id', function(req, res){
           },{where: {id: data}}
           ).then(
                function updateSuccess(updatedData){
-                    response.json({
+                    res.json({
                          feature_name: featureName,
                          feature_type: featureType,
                          description: description,
