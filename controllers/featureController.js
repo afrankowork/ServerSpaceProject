@@ -24,33 +24,33 @@ router.get('/:id', (req, res) => {
      featureModel.findOne({
                where: { id: data, owner_id: userid }
           }).then(
-               function findOneSuccess(data) {
+               function Success(data) {
                     response.json(data);
                },
-               function findOneError(err) {
+               function Error(err) {
                     response.send(500, err.message);
                }
           );
 });
 
 /*        POST A FEATURE                */
-router.post("/", async (req, res) => {
-     var featureName = req.feature.featureName;
-     var featureType = req.feature.featureType;
-     var description = req.feature.description;
-     var ownerId = req.feature.ownerId;
-     var userNotes = req.feature.userNotes;
-     var distanceData = req.feature.distance;
-     var ascensionData = req.feature.ascension;
-     var declinationData = req.feature.declination;
-     var altData = req.feature.alt;
-     var aziData = req.feature.azi;
+router.post("/", (req, res) => {
+     var ownerData = req.user.id;
+     var featureName = req.body.feature.feature_name;
+     var featureType = req.body.feature.feature_type;
+     var description = req.body.feature.description;
+     var userNotes = req.body.feature.user_notes;
+     var distanceData = req.body.feature.distance;
+     var ascensionData = req.body.feature.ascension;
+     var declinationData = req.body.feature.declination;
+     var altData = req.body.feature.alt;
+     var aziData = req.body.feature.azi;
 
      featureModel.create({
           feature_name: featureName,
           feature_type: featureType,
           description: description,
-          owner_id: ownerId,
+          owner_id: ownerData,
           user_notes: userNotes,
           distance: distanceData,
           ascension: ascensionData,
@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
           azi: aziData,
      }).then( function createSuccess(featureData){
           res.json({
-               feature: featuredata
+               feature: featureData
           });
      },
      function createError(err){
@@ -90,7 +90,7 @@ router.put('/:id', function(req, res){
      var featureName = req.body.feature.featureName;
      var featureType = req.body.feature.featureType;
      var description = req.body.feature.description;
-     var ownerId = req.body.feature.ownerId;
+     var ownerId = req.user.ownerId;
      var userNotes = req.body.feature.userNotes;
      var distanceData = req.body.feature.distance;
      var ascensionData = req.body.feature.ascension;
