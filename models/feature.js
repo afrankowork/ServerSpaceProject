@@ -8,11 +8,11 @@ module.exports = function(sequelize, DataTypes){
           user_notes: DataTypes.STRING,
 
           // Location elements
-          distance: DataTypes.INTEGER,
-          ascension: DataTypes.INTEGER,
-          declination: DataTypes.INTEGER,
-          alt: DataTypes.INTEGER,
-          azi: DataTypes.INTEGER,
+          distance: DataTypes.FLOAT,
+          ascension: DataTypes.FLOAT,
+          declination: DataTypes.FLOAT,
+          alt: DataTypes.FLOAT,
+          azi: DataTypes.FLOAT,
 
 
           //TODO: user_images: DataTypes.STRING - 
